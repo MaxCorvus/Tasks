@@ -1,0 +1,36 @@
+
+.date{font-size: 11px}
+.post-text{font-size: 20px}
+.fs-12{
+    font-size: 12px;
+    background: #eee}
+.shadow-none{box-shadow: none}
+.name{color: #007bff}
+.textarea{resize: none}
+.post-body {
+   margin-bottom : 5px;
+}
+.comment-body {
+    margin-left: 40px;
+    margin-bottom: 5px;
+}
+.star {
+    width: 20px;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+.counters {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.counter {
+    flex: 1 0 21%; /* explanation below */
+    margin: 5px;
+    height: 100px;
+    background-color: paleturquoise;
+}
+h5 {
+    padding-top: 10px;
+}

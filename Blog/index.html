@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link href="FrontEnd/styles.css" rel="stylesheet" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="FrontEnd/my.js"></script>
+</head>
+<body>
+<div class="container mt-5">
+    <div class="card-title d-flex justify-content-center">
+        <h3 class="mr-2"><span>COUNTER</span></h3>
+    </div>
+    <div class="counters">
+        <div class="counter negative border border-dark">
+            <div class="card-title d-flex justify-content-center">
+                <h5 class="mr-2"><span>Negative:</span></h5>
+            </div>
+            <div class="d-flex justify-content-center">
+               <span class="mr-2 font-weight-bold" id="negative"></span>
+            </div>
+        </div>
+        <div class="counter all border border-dark">
+            <div class="card-title d-flex justify-content-center">
+                <h5 class="mr-2"><span>All:</span></h5>
+            </div>
+            <div class="d-flex justify-content-center">
+              <span class="mr-2 font-weight-bold" id="all"></span>
+            </div>
+        </div>
+        <div class="counter positive border border-dark">
+            <div class="card-title d-flex justify-content-center">
+                <h5 class="mr-2"><span>Positive:</span></h5>
+            </div>
+            <div class="d-flex justify-content-center">
+               <span class="mr-2 font-weight-bold" id="positive"></span>
+            </div>
+        </div>
+
+    </div>
+    <div class="card-title d-flex justify-content-center">
+        <h3 class="mr-2"><span>POSTS</span></h3>
+    </div>
+    <div class="action" id="top-buttons">
+        <div class="modal-header border-0">
+            <button type="button" class="btn btn-success add addUser" data-toggle="modal"
+                    data-target="#post-modal" data-whatever="Add a new user" id="addPost">Add post
+            </button>
+        </div>
+    </div>
+
+<!--    User Form Modal-->
+
+    <div class="modal" id="post-modal" tabindex="-1" aria-labelledby="user-form-modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="UserModalLabel">Add post</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <form id="FormForPost">
+                        <input type="hidden" id="post_id" name="post_id">
+                        <div class="form-group">
+                            <label for="name" class="col-form-label">Name:</label>
+                            <input  type="text" class="form-control" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="text" class="col-form-label">Text</label>
+                            <textarea class="form-control" id="text" required></textarea>
+                        </div>
+                        <div class="modal-body">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" id="postSave">Save</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+<!--    User From Modal-->
+    <div class="d-flex justify-content-left row">
+        <div class="col-md-8">
+            <div class="d-flex flex-column post-section">
+
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
