@@ -1,0 +1,40 @@
+<?php if ($block->getProducts()) : ?>
+    <div id="custom-block-wrapper">
+        <div class="block-title">
+            <strong role="heading"><?= /* @noEscape */
+                __('Custom Block') ?></strong>
+        </div>
+        <ol class="product-items">
+            <?php foreach ($block->getProducts() as $product) : ?>
+                <li class="product-item">
+                    <div class="product-item-info">
+                        <a class="product-item-photo"
+                           href="<?= /* @noEscape */ $block->escapeUrl($product->getProductUrl()) ?>" title="<?= /* @noEscape */ $product->getName(); ?>">
+                            <span class="product-image-container">
+                                <span class="product-image-wrapper" style="padding-bottom: 120%;">
+                                    <img src="<?= /* @noEscape */ $block->getSmallImageUrl($product) ?>" alt="<?= /* @noEscape */ $product->getName(); ?>" style="width: 15%;">
+                                </span>
+                            </span>
+                        </a>
+                        <div class="product-item-details">
+                            <strong class="product-item-name">
+                                <a class="product-item-link" href="<?= /* @noEscape */ $block->escapeUrl($product->getProductUrl()); ?>">
+                                    <span><?= /* @noEscape */ $product->getName(); ?></span>
+                                </a>
+                            </strong>
+                            <div>
+                                <div class="price-box price-configured_price">
+                                    <p class="price-as-configured">
+                                        <span class="price-container price-configured_price tax weee">
+                                            <span class="price-wrapper">
+                                                <span class="price"><?= /* @noEscape */ $block->getFormatPrice($product->getPrice()) ?></span>
+                                            </span>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                </li>
+            <?php endforeach; ?>
+        </ol>
+    </div>
+<?php endif; ?>
