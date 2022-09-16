@@ -10,6 +10,7 @@ use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Element\Template;
 use Magento\Catalog\Model\Product\Visibility;
 use Magento\Catalog\Model\Product\Attribute\Source\Status;
+use Magento\Catalog\Helper\Image;
 use Psr\Log\LoggerInterface;
 
 class Products extends Template
@@ -34,6 +35,7 @@ class Products extends Template
     protected $productVisibility;
 
     protected $productStatus;
+    protected $image;
 
     /**
      * @var LoggerInterface
@@ -54,6 +56,7 @@ class Products extends Template
         Status $productStatus,
         Visibility $productVisibility,
         LoggerInterface $logger,
+        Image $image,
         array $data = []
     ) {
         parent::__construct($context, $data);
@@ -62,6 +65,7 @@ class Products extends Template
         $this->productStatus = $productStatus;
         $this->productVisibility = $productVisibility;
         $this->logger = $logger;
+        $this->image = $image;
     }
 
     /**
@@ -69,7 +73,6 @@ class Products extends Template
      */
     public function getProducts()
     {
-        try {
             $collection = $this->productCollectionFactory->create();
             $collection->addFilter('type_id', 'simple');
             $collection->addAttributeToSelect('price');
@@ -79,12 +82,7 @@ class Products extends Template
             $collection->addAttributeToFilter('status', ['in' => $this->productStatus->getVisibleStatusIds()]);
             $collection->setVisibility($this->productVisibility->getVisibleInSiteIds());
             $collection->getSelect()->orderRand()->limit(3);
-
             return $collection->getItems();
-        } catch (\Exception $e) {
-            $this->logger->critical($e->getMessage());
-            return false;
-        }
     }
 
     /**
@@ -94,7 +92,12 @@ class Products extends Template
     public function getSmallImageUrl($product)
     {
         try {
-            return $this->getMediaUrl() . $product->getSmallImage();
+            return $this->image->init($product, 'product_small_image')
+                    ->constrainOnly(true)
+                    ->keepAspectRatio(true)
+                    ->keepTransparency(true)
+                    ->keepFrame(false)
+                    ->getUrl();
         } catch (\Exception $e) {
             $this->logger->critical($e->getMessage());
             return false;
@@ -113,8 +116,8 @@ class Products extends Template
     /**
      * @return string
      */
-    public function getMediaUrl()
-    {
-        return $this->_urlBuilder->getBaseUrl(['_type' => UrlInterface::URL_TYPE_MEDIA]) . 'catalog/product';
-    }
+//    public function getMediaUrl()
+//    {
+//        return $this->_urlBuilder->getBaseUrl(['_type' => UrlInterface::URL_TYPE_MEDIA]) . 'catalog/product';
+//    }
 }
